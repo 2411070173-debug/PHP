@@ -1,0 +1,53 @@
+/* dashboard.css - estilos simples y modernos para la tarjeta de bienvenida */
+
+.welcome-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, #ffffffcc 0%, #f1f5f9cc 100%);
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(20,30,50,0.06);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.welcome-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a; /* slate-900 */
+}
+
+.btn-logout {
+  display: inline-block;
+  background: #ef4444; /* red-500 */
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239,68,68,0.18);
+  opacity: 0.98;
+}
+
+/* Adaptaciones responsivas */
+@media (max-width: 576px) {
+  .welcome-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.2rem;
+  }
+}

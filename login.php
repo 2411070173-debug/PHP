@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
 
+
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
 
     $stmt->execute([$username]);
@@ -25,22 +26,82 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION["username"] = $user["username"];
 
-        header("Location: dashboard.php");
+        header("Location: /phpweb/dist/dashboard.php");
 
         exit;
 
     } else {
-
-        echo "Usuario o contraseña incorrectos.";
-
+        $error_message = "Usuario o contraseña incorrectos.";
     }
-
 }
-
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loguearse</title>
+    <link rel='stylesheet' href="login2.css">
+</head>
+<body>
+    <div class="login-container">
+        <?php if (isset($error_message)): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
 
-<form method="POST">
+        <form autocomplete='off' class='form' method='POST'>
+            <div class='control'>
+                <h1>
+                    Sign In
+                </h1>
+            </div>
+  <div class='control block-cube block-input'>
+    <input name='username' placeholder='Username' type='text' required>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <div class='control block-cube block-input'>
+    <input name='password' placeholder='Password' type='password' required>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+  </div>
+  <button class='btn block-cube block-cube-hover' type='submit'>
+    <div class='bg-top'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg-right'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='bg'>
+      <div class='bg-inner'></div>
+    </div>
+    <div class='text'>
+      Log In
+    </div>
+  </button>
+  
+</form>
+
+
+
+<!-- <form method="POST">
 
     <input type="text" name="username" placeholder="Usuario" required><br>
 
@@ -48,4 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Iniciar Sesión</button>
 
-</form>
+</form> -->
+
+
+</body>
+</html>

@@ -257,23 +257,23 @@
                 data-bs-toggle="dropdown"
               >
                 <img
-                  src="./assets/img/user2-160x160.jpg"
+                  src="./assets/img/foto01.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">Ramos Cortez Diego</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="./assets/img/user2-160x160.jpg"
+                    src="./assets/img/foto01.png"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
+                    Ramos Cortez Diego - Desarrollador FullStack
+                    <small>UNDC - Oct. 2025</small>
                   </p>
                 </li>
                 <!--end::User Image-->
@@ -807,21 +807,32 @@
           <!--end::Container-->
         </div>
 
-        <!--TABLA CONTENIDA EN MYQSL-->
+        <!--TABLA CONTENIDA EN MYSQL-->
         <div class="app-content">
+
           <?php
-            include "conexionmysql.php";
-            $sql=$conexion->query(" select * FROM usuarios"); while($datos) ?>
-          <!--begin::Container-->
+            // Use conexionpdo.php (PDO) which exists in project root.
+            // __DIR__ is this file's directory (c:/xampp/htdocs/phpweb/dist)
+            require_once __DIR__ . '/../conexionpdo.php';
+
+            try {
+                $stmt = $pdo->query("SELECT * FROM users");
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                echo '<div class="alert alert-danger">Error al obtener datos: ' . htmlspecialchars($e->getMessage()) . '</div>';
+                $rows = [];
+            }
+          ?>
+
           <div class="container-fluid">
             <!-- Begin::CRUD Table -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Gestión de Datos</h3>
                 <div class="card-tools">
-                  <button class="btn btn-primary">
+                  <a href="#" class="btn btn-primary">
                     <i class="bi bi-plus-lg"></i> Nuevo
-                  </button>
+                  </a>
                 </div>
               </div>
               <div class="card-body">
@@ -829,48 +840,25 @@
                   <table class="table table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
+                        <th>id</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>email</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Juan Pérez</td>
-                        <td>juan@example.com</td>
-                        <td>555-0123</td>
-                        <td>
-                          <button class="btn btn-sm btn-info">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning">
-                            <i class="bi bi-pencil"></i>
-                          </button>
-                          <button class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>María García</td>
-                        <td>maria@example.com</td>
-                        <td>555-0124</td>
-                        <td>
-                          <button class="btn btn-sm btn-info">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning">
-                            <i class="bi bi-pencil"></i>
-                          </button>
-                          <button class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
+                      <?php if (count($rows) === 0): ?>
+                        <tr><td colspan="4" class="text-center">No hay registros</td></tr>
+                      <?php else: ?>
+                        <?php foreach ($rows as $datos): ?>
+                          <tr>
+                            <td><?= htmlspecialchars($datos['id'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['username'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['password'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['email'] ?? '') ?></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
                     </tbody>
                   </table>
                 </div>
@@ -878,26 +866,20 @@
               <div class="card-footer">
                 <nav>
                   <ul class="pagination justify-content-end">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Siguiente</a>
-                    </li>
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
                   </ul>
                 </nav>
               </div>
             </div>
             <!-- End::CRUD Table -->
+            
+
+          <!--begin::Container-->
+          
 
             <!-- Info boxes -->
             <div class="row mt-4">

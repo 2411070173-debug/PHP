@@ -6,7 +6,8 @@ $dbname = "bd-ventas";
 
 $username = "Diego";  // Cambia si es necesario
 
-$password = "";  // Cambia si es necesario
+$password = ""; // Cambia si es necesario
+
 
 
 try {
@@ -20,4 +21,3 @@ try {
     die("Error en la conexión: " . $e->getMessage());
 
 }
-echo "Conectado";

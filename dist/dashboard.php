@@ -9,12 +9,9 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 
 }
-
-echo "Bienvenido, " . $_SESSION["username"];
-
-echo "<br><a href='logout.php'>Cerrar sesión</a>";
-
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -71,6 +68,8 @@ echo "<br><a href='logout.php'>Cerrar sesión</a>";
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="./css/adminlte.css" />
+  <!-- Estilos personalizados para el dashboard -->
+  <link rel="stylesheet" href="./dashboard.css" />
     <!--end::Required Plugin(AdminLTE)-->
     <!-- apexcharts -->
     <link
@@ -245,22 +244,22 @@ echo "<br><a href='logout.php'>Cerrar sesión</a>";
             <li class="nav-item dropdown user-menu">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img
-                  src="./assets/img/user2-160x160.jpg"
+                  src="./assets/img/foto01.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Diego Ramos<?php echo "Bienvenido, " . $_SESSION["username"];?></span>
+                <span class="d-none d-md-inline"><?php echo "Bienvenido, " . $_SESSION["username"];?></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="./assets/img/user2-160x160.jpg"
+                    src="./assets/img/MiFTmejorada.png"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
+                    Diego Ramos - Web Developer
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
@@ -333,15 +332,15 @@ echo "<br><a href='logout.php'>Cerrar sesión</a>";
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
+                    <a href="./index.html" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Dashboard v1</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index2.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v2</p>
+                    <a href="./index2.php" class="nav-link" id="crud-link">
+                      <i class="nav-icon bi bi-database"></i>
+                      <p>CRUD</p>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -350,7 +349,7 @@ echo "<br><a href='logout.php'>Cerrar sesión</a>";
                       <p>Dashboard v3</p>
                     </a>
                   </li>
-                </ul>
+                  
               </li>
               <li class="nav-item">
                 <a href="./generate/theme.html" class="nav-link">
@@ -766,7 +765,22 @@ echo "<br><a href='logout.php'>Cerrar sesión</a>";
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
+
+
+            <!-- Bienvenida personalizada -->
+            <div class="row my-4">
+              <div class="col-12">
+                <div class="welcome-card">
+                  <h1 class="welcome-title">Bienvenido, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+                  <a class="btn-logout" href="../lockout.php">Cerrar sesión</a>
+                </div>
+              </div>
+            </div>
             <!--begin::Row-->
+
+
+
+
             <div class="row">
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
