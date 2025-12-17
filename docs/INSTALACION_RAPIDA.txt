@@ -1,0 +1,303 @@
+╔═══════════════════════════════════════════════════════════════╗
+║          GUÍA RÁPIDA DE INSTALACIÓN - SISTEMA CRUD            ║
+║                    Gestión de Usuarios PHP                     ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📋 REQUISITOS PREVIOS
+═══════════════════════════════════════════════════════════════
+✓ PHP 7.4 o superior
+✓ MySQL 5.7 o superior
+✓ Servidor web (Apache, Nginx, etc.)
+✓ XAMPP/WAMP/LAMP instalado
+✓ Navegador web moderno (Chrome, Firefox, Edge)
+
+
+🚀 PASOS DE INSTALACIÓN
+═══════════════════════════════════════════════════════════════
+
+[PASO 1] Verificar la estructura de carpetas
+───────────────────────────────────────────────────────────────
+Tu proyecto debe tener esta estructura:
+
+phpweb/
+├── index.php                          ← Página principal CRUD
+├── crud_handler.php                   ← Funciones CRUD
+├── pdf_generator.php                  ← Generador PDF
+├── conexion.php                       ← Conexión MySQL
+├── CRUD_DOCUMENTACION.md              ← Documentación completa
+├── INSTALACION_RAPIDA.txt             ← Este archivo
+├── includes/
+│   ├── conexionpdo.php               ← Conexión PDO
+│   └── ...
+├── auth/
+│   ├── login.php
+│   ├── registrar.php
+│   ├── lockout.php
+│   └── ...
+└── dist/
+    ├── dashboard.php
+    └── ...
+
+
+[PASO 2] Configurar la base de datos
+───────────────────────────────────────────────────────────────
+
+A) Abre phpMyAdmin
+   → http://localhost/phpmyadmin
+
+B) Crea una nueva base de datos:
+   - Haz clic en "Nueva"
+   - Nombre: phpweb
+   - Cotejamiento: utf8mb4_unicode_ci
+   - Haz clic en "Crear"
+
+C) Copia y ejecuta este SQL:
+
+   ╔──────────────────────────────────────────╗
+   ║         SQL PARA LA TABLA USERS          ║
+   ╚──────────────────────────────────────────╝
+
+   CREATE TABLE `users` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `username` varchar(100) NOT NULL,
+     `email` varchar(255) NOT NULL,
+     `phone` varchar(20),
+     `password` varchar(255) NOT NULL,
+     `oauth_google_id` varchar(255),
+     `oauth_provider` varchar(50),
+     `oauth_created_at` timestamp NULL,
+     `oauth_updated_at` timestamp NULL,
+     `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+     `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+     PRIMARY KEY (`id`),
+     UNIQUE KEY `unique_username` (`username`),
+     UNIQUE KEY `unique_email` (`email`),
+     INDEX `idx_username` (`username`),
+     INDEX `idx_email` (`email`)
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+[PASO 3] Verificar y actualizar conexionpdo.php
+───────────────────────────────────────────────────────────────
+
+Abre: includes/conexionpdo.php
+
+Verifica que contenga:
+
+   <?php
+   // Configuración de base de datos
+   $host = 'localhost';
+   $db = 'phpweb';
+   $user = 'root';        ← Cambiar si tu usuario es diferente
+   $pass = '';            ← Agregar contraseña si la tienes
+   $charset = 'utf8mb4';
+
+   try {
+       $pdo = new PDO(
+           "mysql:host=$host;dbname=$db;charset=$charset",
+           $user,
+           $pass,
+           [
+               PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+               PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+           ]
+       );
+   } catch (PDOException $e) {
+       die('Error de conexión: ' . $e->getMessage());
+   }
+   ?>
+
+⚠️  IMPORTANTE: Asegúrate que los datos coincidan con tu instalación MySQL
+
+
+[PASO 4] Iniciar el servidor
+───────────────────────────────────────────────────────────────
+
+Si usas XAMPP:
+  ① Abre XAMPP Control Panel
+  ② Inicia Apache
+  ③ Inicia MySQL
+  ④ Ve a http://localhost/phpweb/index.php
+
+Si usas servidor integrado de PHP:
+  cd c:\xampp\htdocs\phpweb
+  php -S localhost:8000
+  → Ve a http://localhost:8000
+
+
+[PASO 5] Probar la instalación
+───────────────────────────────────────────────────────────────
+
+✓ Accede a http://localhost/phpweb/index.php
+✓ Deberías ver la página de inicio con tabla vacía
+✓ Haz clic en "Nuevo Usuario"
+✓ Completa el formulario:
+  - Usuario: test_user
+  - Email: test@example.com
+  - Teléfono: +34 612345678
+  - Contraseña: (dejar vacío para autogenerar)
+✓ Haz clic en "Crear"
+✓ Verifica que el usuario aparezca en la tabla
+
+
+🧪 PRUEBAS RÁPIDAS
+═══════════════════════════════════════════════════════════════
+
+Test 1: Crear usuario
+  └─ Haz clic en "Nuevo Usuario" → Completa datos → Crear
+
+Test 2: Ver usuarios
+  └─ Verifica que aparezcan en la tabla
+
+Test 3: Buscar usuario
+  └─ Ingresa en búsqueda → Haz clic en Buscar
+
+Test 4: Editar usuario
+  └─ Haz clic en "Editar" → Modifica datos → Guardar
+
+Test 5: Eliminar usuario
+  └─ Haz clic en "Eliminar" → Confirmar → Listo
+
+Test 6: Generar PDF
+  └─ Haz clic en "Descargar PDF" → Se descarga archivo
+
+
+⚙️ CONFIGURACIÓN AVANZADA (Opcional)
+═══════════════════════════════════════════════════════════════
+
+[Google OAuth]
+  Si deseas integrar Login con Google:
+  
+  1. Ve a: /oauth/README.md
+  2. Sigue las instrucciones completas
+  3. Obtén credenciales en Google Cloud Console
+  4. Configura oauth/config.php
+  5. Prueba el botón "Iniciar sesión con Google"
+
+[Email Verificación]
+  (Puede añadirse en versión futura)
+
+[Auditoría de cambios]
+  (Puede añadirse en versión futura)
+
+
+🔧 TROUBLESHOOTING - Solución de Problemas
+═══════════════════════════════════════════════════════════════
+
+Problema: "Error de conexión a base de datos"
+Solución:
+  ① Verifica que MySQL esté iniciado
+  ② Comprueba credenciales en conexionpdo.php
+  ③ Asegúrate de que la BD "phpweb" existe
+  ④ Verifica permisos del usuario MySQL
+
+Problema: "La tabla no tiene datos"
+Solución:
+  ① Ejecuta nuevamente el SQL para crear tabla
+  ② Verifica que la tabla se creó: phpmyadmin → phpweb → users
+  ③ Intenta crear un nuevo usuario desde la interfaz
+
+Problema: "Error 404 - Página no encontrada"
+Solución:
+  ① Verifica que Apache esté iniciado
+  ② Comprueba la ruta: c:\xampp\htdocs\phpweb\
+  ③ Accede a http://localhost/phpweb/index.php
+
+Problema: "Formularios no envían datos"
+Solución:
+  ① Verifica JavaScript esté habilitado
+  ② Revisa la consola del navegador (F12)
+  ③ Comprueba permiso de escritura de carpeta
+
+Problema: "PDF no se descarga"
+Solución:
+  ① Verifica que pdf_generator.php existe
+  ② Comprueba que getAllUsers() trae datos
+  ③ Revisa permisos de carpeta temporal
+
+
+📁 ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+CRUD Core:
+  • crud_handler.php          → Todas las funciones CRUD
+  • pdf_generator.php         → Generación de PDF
+  • conexion.php              → Conexión MySQL original
+
+Configuración:
+  • includes/conexionpdo.php  → Conexión PDO (ACTUALIZAR)
+  • auth/lockout.php          → Cierre de sesión
+
+Documentación:
+  • CRUD_DOCUMENTACION.md     → Documentación completa
+  • INSTALACION_RAPIDA.txt    → Este archivo
+
+Frontend:
+  • index.php                 → Página principal con CRUD
+
+
+📖 ARCHIVOS DE REFERENCIA
+═══════════════════════════════════════════════════════════════
+
+Para ver funciones disponibles:
+  • CRUD_DOCUMENTACION.md → Sección "Funciones CRUD"
+
+Para ver ejemplos de código:
+  • CRUD_DOCUMENTACION.md → Sección "Ejemplos de Uso"
+
+Para estructura de BD:
+  • CRUD_DOCUMENTACION.md → Sección "Estructura de Base de Datos"
+
+Para medidas de seguridad:
+  • CRUD_DOCUMENTACION.md → Sección "Seguridad"
+
+
+🔐 SEGURIDAD - Primeros Pasos
+═══════════════════════════════════════════════════════════════
+
+1. ✅ Cambiar contraseña MySQL (si está en blanco)
+2. ✅ Cambiar archivos de ejemplo por tu contenido
+3. ✅ Usar HTTPS en producción
+4. ✅ Implementar rate limiting para login
+5. ✅ Crear backups regulares de BD
+6. ✅ Monitorear logs de error
+
+
+📞 COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════════
+
+Iniciar XAMPP desde terminal:
+  xampp-control.exe
+
+Ver logs de PHP:
+  tail -f c:\xampp\apache\logs\error.log
+
+Acceder a MySQL:
+  mysql -u root -p
+
+Hacer backup de BD:
+  mysqldump -u root phpweb > backup.sql
+
+Restaurar BD:
+  mysql -u root phpweb < backup.sql
+
+
+✨ ¡LISTO!
+═══════════════════════════════════════════════════════════════
+
+Tu sistema CRUD está completamente instalado y funcional.
+
+Próximos pasos:
+  1. Crea varios usuarios de prueba
+  2. Prueba todas las funciones (crear, leer, editar, eliminar)
+  3. Genera un PDF con los usuarios
+  4. Lee CRUD_DOCUMENTACION.md para aprender más
+  5. Personaliza según tus necesidades
+
+¡Disfruta tu sistema CRUD! 🎉
+
+
+═══════════════════════════════════════════════════════════════
+Versión: 1.0 | Actualizado: 2025
+Sistema CRUD - Gestión de Usuarios con PHP y MySQL
+═══════════════════════════════════════════════════════════════

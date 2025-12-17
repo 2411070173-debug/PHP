@@ -1,0 +1,81 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          CAMBIOS REALIZADOS EN index.php                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+✅ CAMBIOS COMPLETADOS:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✂️ ELIMINADO:
+   ❌ Logout (POST handler) - Ya no está en index.php
+   ❌ Verificación de autenticación en CRUD - CRUD ahora es público
+   ❌ Navbar dropdown con usuario autenticado
+   ❌ Link a dashboard.php en navbar
+   ❌ Condición "Inicia sesión para agregar usuarios"
+   ❌ Archivo dashboard.php (de la raíz) - Usaremos el de /dist/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. ✨ AGREGADO:
+   ✅ Botones simples "Iniciar Sesión" y "Registrarse" en navbar
+   ✅ Botones siempre visibles (sin condición de autenticación)
+   ✅ Botones separados y destacados
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. 🔄 MODIFICADO:
+   📝 login.php:
+      Antes: header("Location: /phpweb/dashboard.php");
+      Ahora: header("Location: /phpweb/dist/dashboard.php");
+
+   📝 registrar.php:
+      Antes: header("Location: /phpweb/dashboard.php");
+      Ahora: header("Location: /phpweb/dist/dashboard.php");
+
+   📝 index.php (navbar):
+      - Quitadas verificaciones de sesión
+      - Botones siempre visibles
+      - Redirección a login/registrar
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. 🎯 RESULTADO FINAL:
+
+   INDEX.PHP:
+   • Navbar limpio con solo 2 botones en la derecha
+   • Título "Gestión de Usuarios" a la izquierda
+   • CRUD completamente funcional y público
+   • No hay autenticación requerida
+   • Botones "Iniciar Sesión" y "Registrarse"
+
+   LOGIN.PHP:
+   • Redirige a: /phpweb/dist/dashboard.php
+
+   REGISTRAR.PHP:
+   • Redirige a: /phpweb/dist/dashboard.php
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 FLUJO ACTUAL:
+
+Usuario en index.php
+    ↓
+Ve tabla de usuarios (CRUD completo)
+    ↓
+Haz clic en "Iniciar Sesión" o "Registrarse" (arriba a la derecha)
+    ↓
+Se redirige a login.php O registrar.php
+    ↓
+Después de autenticar → /phpweb/dist/dashboard.php
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ ESTADO ACTUAL:
+
+✅ index.php        - Solo CRUD, botones en navbar
+✅ login.php        - Redirige a /dist/dashboard.php
+✅ registrar.php    - Redirige a /dist/dashboard.php
+✅ dashboard.php (raíz) - ELIMINADO
+✅ /dist/dashboard.php  - Será el usado (ya existía)
+
+═══════════════════════════════════════════════════════════════════════════════

@@ -9,24 +9,29 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 
 }
-/*
-echo "Bienvenido, " . $_SESSION["username"];
-
-echo "<br><a href='logout.php'>sign out</a>";
-*/
 ?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>AdminLTE v4 | Dashboard</title>
     <!--begin::Accessibility Meta Tags-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#007bff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#1a1a1a"
+      media="(prefers-color-scheme: dark)"
+    />
     <!--end::Accessibility Meta Tags-->
     <!--begin::Primary Meta Tags-->
     <meta name="title" content="AdminLTE v4 | Dashboard" />
@@ -99,19 +104,33 @@ echo "<br><a href='logout.php'>sign out</a>";
           <!--begin::Start Navbar Links-->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+              <a
+                class="nav-link"
+                data-lte-toggle="sidebar"
+                href="#"
+                role="button"
+              >
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item d-none d-md-block">
+              <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-md-block">
+              <a href="#" class="nav-link">Contact</a>
+            </li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
             <!--begin::Navbar Search-->
             <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+              <a
+                class="nav-link"
+                data-widget="navbar-search"
+                href="#"
+                role="button"
+              >
                 <i class="bi bi-search"></i>
               </a>
             </li>
@@ -201,7 +220,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                   <!--end::Message-->
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="#" class="dropdown-item dropdown-footer"
+                  >See All Messages</a
+                >
               </div>
             </li>
             <!--end::Messages Dropdown Menu-->
@@ -212,7 +233,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                 <span class="navbar-badge badge text-bg-warning">15</span>
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+                <span class="dropdown-item dropdown-header"
+                  >15 Notifications</span
+                >
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
                   <i class="bi bi-envelope me-2"></i> 4 new messages
@@ -229,7 +252,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                   <span class="float-end text-secondary fs-7">2 days</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
+                <a href="#" class="dropdown-item dropdown-footer">
+                  See All Notifications
+                </a>
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
@@ -237,19 +262,29 @@ echo "<br><a href='logout.php'>sign out</a>";
             <li class="nav-item">
               <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                 <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
-                <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none"></i>
+                <i
+                  data-lte-icon="minimize"
+                  class="bi bi-fullscreen-exit"
+                  style="display: none"
+                ></i>
               </a>
             </li>
             <!--end::Fullscreen Toggle-->
             <!--begin::User Menu Dropdown-->
             <li class="nav-item dropdown user-menu">
-              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
                 <img
                   src="./assets/img/foto01.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline"><?php echo " Bienvenido, " . $_SESSION["username"];?></span>
+                <span class="d-none d-md-inline"
+                  ><?php echo " Bienvenido, " . $_SESSION["username"];?></span
+                >
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -269,7 +304,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                 <li class="user-body">
                   <!--begin::Row-->
                   <div class="row">
-                    <div class="col-4 text-center"><a href="#">Followers</a></div>
+                    <div class="col-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
                     <div class="col-4 text-center"><a href="#">Sales</a></div>
                     <div class="col-4 text-center"><a href="#">Friends</a></div>
                   </div>
@@ -279,7 +316,11 @@ echo "<br><a href='logout.php'>sign out</a>";
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="/phpweb/auth/lockout.php" class="btn btn-default btn-flat float-end">Cerrar Sesión</a>
+                  <a
+                    href="/phpweb/auth/lockout.php"
+                    class="btn btn-default btn-flat float-end"
+                    >Cerrar Sesión</a
+                  >
                 </li>
                 <!--end::Menu Footer-->
               </ul>
@@ -296,7 +337,7 @@ echo "<br><a href='logout.php'>sign out</a>";
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./dashboard_01.php" class="brand-link">
+          <a href="./index.html" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="./assets/img/AdminLTELogo.png"
@@ -421,7 +462,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                   <i class="nav-icon bi bi-clipboard-fill"></i>
                   <p>
                     Layout Options
-                    <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                    <span class="nav-badge badge text-bg-secondary me-3"
+                      >6</span
+                    >
                     <i class="nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
@@ -615,7 +658,96 @@ echo "<br><a href='logout.php'>sign out</a>";
                   </li>
                 </ul>
               </li>
-
+              <li class="nav-header">DOCUMENTATIONS</li>
+              <li class="nav-item">
+                <a href="./docs/introduction.html" class="nav-link">
+                  <i class="nav-icon bi bi-download"></i>
+                  <p>Installation</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/layout.html" class="nav-link">
+                  <i class="nav-icon bi bi-grip-horizontal"></i>
+                  <p>Layout</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/color-mode.html" class="nav-link">
+                  <i class="nav-icon bi bi-star-half"></i>
+                  <p>Color Mode</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-ui-checks-grid"></i>
+                  <p>
+                    Components
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a
+                      href="./docs/components/main-header.html"
+                      class="nav-link"
+                    >
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Main Header</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      href="./docs/components/main-sidebar.html"
+                      class="nav-link"
+                    >
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Main Sidebar</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-filetype-js"></i>
+                  <p>
+                    Javascript
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="./docs/javascript/treeview.html" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Treeview</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/browser-support.html" class="nav-link">
+                  <i class="nav-icon bi bi-browser-edge"></i>
+                  <p>Browser Support</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/how-to-contribute.html" class="nav-link">
+                  <i class="nav-icon bi bi-hand-thumbs-up-fill"></i>
+                  <p>How To Contribute</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/faq.html" class="nav-link">
+                  <i class="nav-icon bi bi-question-circle-fill"></i>
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./docs/license.html" class="nav-link">
+                  <i class="nav-icon bi bi-patch-check-fill"></i>
+                  <p>License</p>
+                </a>
+              </li>
+              
             </ul>
             <!--end::Sidebar Menu-->
           </nav>
@@ -635,7 +767,9 @@ echo "<br><a href='logout.php'>sign out</a>";
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Dashboard
+                  </li>
                 </ol>
               </div>
             </div>
@@ -777,7 +911,9 @@ echo "<br><a href='logout.php'>sign out</a>";
               <!-- Start col -->
               <div class="col-lg-7 connectedSortable">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Sales Value</h3></div>
+                  <div class="card-header">
+                    <h3 class="card-title">Sales Value</h3>
+                  </div>
                   <div class="card-body"><div id="revenue-chart"></div></div>
                 </div>
                 <!-- /.card -->
@@ -786,8 +922,17 @@ echo "<br><a href='logout.php'>sign out</a>";
                   <div class="card-header">
                     <h3 class="card-title">Direct Chat</h3>
                     <div class="card-tools">
-                      <span title="3 New Messages" class="badge text-bg-primary"> 3 </span>
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse">
+                      <span
+                        title="3 New Messages"
+                        class="badge text-bg-primary"
+                      >
+                        3
+                      </span>
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-collapse"
+                      >
                         <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
                         <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
                       </button>
@@ -799,7 +944,11 @@ echo "<br><a href='logout.php'>sign out</a>";
                       >
                         <i class="bi bi-chat-text-fill"></i>
                       </button>
-                      <button type="button" class="btn btn-tool" data-lte-toggle="card-remove">
+                      <button
+                        type="button"
+                        class="btn btn-tool"
+                        data-lte-toggle="card-remove"
+                      >
                         <i class="bi bi-x-lg"></i>
                       </button>
                     </div>
@@ -811,8 +960,12 @@ echo "<br><a href='logout.php'>sign out</a>";
                       <!-- Message. Default to the start -->
                       <div class="direct-chat-msg">
                         <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                          <span class="direct-chat-timestamp float-end"> 23 Jan 2:00 pm </span>
+                          <span class="direct-chat-name float-start">
+                            Alexander Pierce
+                          </span>
+                          <span class="direct-chat-timestamp float-end">
+                            23 Jan 2:00 pm
+                          </span>
                         </div>
                         <!-- /.direct-chat-infos -->
                         <img
@@ -830,8 +983,12 @@ echo "<br><a href='logout.php'>sign out</a>";
                       <!-- Message to the end -->
                       <div class="direct-chat-msg end">
                         <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                          <span class="direct-chat-timestamp float-start"> 23 Jan 2:05 pm </span>
+                          <span class="direct-chat-name float-end">
+                            Sarah Bullock
+                          </span>
+                          <span class="direct-chat-timestamp float-start">
+                            23 Jan 2:05 pm
+                          </span>
                         </div>
                         <!-- /.direct-chat-infos -->
                         <img
@@ -840,15 +997,21 @@ echo "<br><a href='logout.php'>sign out</a>";
                           alt="message user image"
                         />
                         <!-- /.direct-chat-img -->
-                        <div class="direct-chat-text">You better believe it!</div>
+                        <div class="direct-chat-text">
+                          You better believe it!
+                        </div>
                         <!-- /.direct-chat-text -->
                       </div>
                       <!-- /.direct-chat-msg -->
                       <!-- Message. Default to the start -->
                       <div class="direct-chat-msg">
                         <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-start"> Alexander Pierce </span>
-                          <span class="direct-chat-timestamp float-end"> 23 Jan 5:37 pm </span>
+                          <span class="direct-chat-name float-start">
+                            Alexander Pierce
+                          </span>
+                          <span class="direct-chat-timestamp float-end">
+                            23 Jan 5:37 pm
+                          </span>
                         </div>
                         <!-- /.direct-chat-infos -->
                         <img
@@ -866,8 +1029,12 @@ echo "<br><a href='logout.php'>sign out</a>";
                       <!-- Message to the end -->
                       <div class="direct-chat-msg end">
                         <div class="direct-chat-infos clearfix">
-                          <span class="direct-chat-name float-end"> Sarah Bullock </span>
-                          <span class="direct-chat-timestamp float-start"> 23 Jan 6:10 pm </span>
+                          <span class="direct-chat-name float-end">
+                            Sarah Bullock
+                          </span>
+                          <span class="direct-chat-timestamp float-start">
+                            23 Jan 6:10 pm
+                          </span>
                         </div>
                         <!-- /.direct-chat-infos -->
                         <img
@@ -895,9 +1062,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 Count Dracula
-                                <small class="contacts-list-date float-end"> 2/28/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  2/28/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> How have you been? I was... </span>
+                              <span class="contacts-list-msg">
+                                How have you been? I was...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -913,9 +1084,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 Sarah Doe
-                                <small class="contacts-list-date float-end"> 2/23/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  2/23/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> I will be waiting for... </span>
+                              <span class="contacts-list-msg">
+                                I will be waiting for...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -931,9 +1106,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 Nadia Jolie
-                                <small class="contacts-list-date float-end"> 2/20/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  2/20/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> I'll call you back at... </span>
+                              <span class="contacts-list-msg">
+                                I'll call you back at...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -949,9 +1128,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 Nora S. Vans
-                                <small class="contacts-list-date float-end"> 2/10/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  2/10/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> Where is your new... </span>
+                              <span class="contacts-list-msg">
+                                Where is your new...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -967,9 +1150,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 John K.
-                                <small class="contacts-list-date float-end"> 1/27/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  1/27/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> Can I take a look at... </span>
+                              <span class="contacts-list-msg">
+                                Can I take a look at...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -985,9 +1172,13 @@ echo "<br><a href='logout.php'>sign out</a>";
                             <div class="contacts-list-info">
                               <span class="contacts-list-name">
                                 Kenneth M.
-                                <small class="contacts-list-date float-end"> 1/4/2023 </small>
+                                <small class="contacts-list-date float-end">
+                                  1/4/2023
+                                </small>
                               </span>
-                              <span class="contacts-list-msg"> Never mind I found... </span>
+                              <span class="contacts-list-msg">
+                                Never mind I found...
+                              </span>
                             </div>
                             <!-- /.contacts-list-info -->
                           </a>
@@ -1009,7 +1200,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                           class="form-control"
                         />
                         <span class="input-group-append">
-                          <button type="button" class="btn btn-primary">Send</button>
+                          <button type="button" class="btn btn-primary">
+                            Send
+                          </button>
                         </span>
                       </div>
                     </form>
@@ -1021,7 +1214,9 @@ echo "<br><a href='logout.php'>sign out</a>";
               <!-- /.Start col -->
               <!-- Start col -->
               <div class="col-lg-5 connectedSortable">
-                <div class="card text-white bg-primary bg-gradient border-primary mb-4">
+                <div
+                  class="card text-white bg-primary bg-gradient border-primary mb-4"
+                >
                   <div class="card-header border-0">
                     <h3 class="card-title">Sales Value</h3>
                     <div class="card-tools">
@@ -1035,7 +1230,9 @@ echo "<br><a href='logout.php'>sign out</a>";
                       </button>
                     </div>
                   </div>
-                  <div class="card-body"><div id="world-map" style="height: 220px"></div></div>
+                  <div class="card-body">
+                    <div id="world-map" style="height: 220px"></div>
+                  </div>
                   <div class="card-footer border-0">
                     <!--begin::Row-->
                     <div class="row">
@@ -1073,7 +1270,9 @@ echo "<br><a href='logout.php'>sign out</a>";
         <!--begin::Copyright-->
         <strong>
           Copyright &copy; 2014-2025&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+          <a href="https://adminlte.io" class="text-decoration-none"
+            >AdminLTE.io</a
+          >.
         </strong>
         All rights reserved.
         <!--end::Copyright-->
@@ -1101,15 +1300,18 @@ echo "<br><a href='logout.php'>sign out</a>";
     <script src="./js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
     <script>
-      const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+      const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";
       const Default = {
-        scrollbarTheme: 'os-theme-light',
-        scrollbarAutoHide: 'leave',
+        scrollbarTheme: "os-theme-light",
+        scrollbarAutoHide: "leave",
         scrollbarClickScroll: true,
       };
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener("DOMContentLoaded", function () {
         const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined) {
+        if (
+          sidebarWrapper &&
+          OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined
+        ) {
           OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
             scrollbars: {
               theme: Default.scrollbarTheme,
@@ -1129,14 +1331,16 @@ echo "<br><a href='logout.php'>sign out</a>";
     ></script>
     <!-- sortablejs -->
     <script>
-      new Sortable(document.querySelector('.connectedSortable'), {
-        group: 'shared',
-        handle: '.card-header',
+      new Sortable(document.querySelector(".connectedSortable"), {
+        group: "shared",
+        handle: ".card-header",
       });
 
-      const cardHeaders = document.querySelectorAll('.connectedSortable .card-header');
+      const cardHeaders = document.querySelectorAll(
+        ".connectedSortable .card-header"
+      );
       cardHeaders.forEach((cardHeader) => {
-        cardHeader.style.cursor = 'move';
+        cardHeader.style.cursor = "move";
       });
     </script>
     <!-- apexcharts -->
@@ -1154,17 +1358,17 @@ echo "<br><a href='logout.php'>sign out</a>";
       const sales_chart_options = {
         series: [
           {
-            name: 'Digital Goods',
+            name: "Digital Goods",
             data: [28, 48, 40, 19, 86, 27, 90],
           },
           {
-            name: 'Electronics',
+            name: "Electronics",
             data: [65, 59, 80, 81, 56, 55, 40],
           },
         ],
         chart: {
           height: 300,
-          type: 'area',
+          type: "area",
           toolbar: {
             show: false,
           },
@@ -1172,35 +1376,35 @@ echo "<br><a href='logout.php'>sign out</a>";
         legend: {
           show: false,
         },
-        colors: ['#0d6efd', '#20c997'],
+        colors: ["#0d6efd", "#20c997"],
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          curve: 'smooth',
+          curve: "smooth",
         },
         xaxis: {
-          type: 'datetime',
+          type: "datetime",
           categories: [
-            '2023-01-01',
-            '2023-02-01',
-            '2023-03-01',
-            '2023-04-01',
-            '2023-05-01',
-            '2023-06-01',
-            '2023-07-01',
+            "2023-01-01",
+            "2023-02-01",
+            "2023-03-01",
+            "2023-04-01",
+            "2023-05-01",
+            "2023-06-01",
+            "2023-07-01",
           ],
         },
         tooltip: {
           x: {
-            format: 'MMMM yyyy',
+            format: "MMMM yyyy",
           },
         },
       };
 
       const sales_chart = new ApexCharts(
-        document.querySelector('#revenue-chart'),
-        sales_chart_options,
+        document.querySelector("#revenue-chart"),
+        sales_chart_options
       );
       sales_chart.render();
     </script>
@@ -1219,8 +1423,8 @@ echo "<br><a href='logout.php'>sign out</a>";
     <script>
       // World map by jsVectorMap
       new jsVectorMap({
-        selector: '#world-map',
-        map: 'world',
+        selector: "#world-map",
+        map: "world",
       });
 
       // Sparkline charts
@@ -1231,14 +1435,14 @@ echo "<br><a href='logout.php'>sign out</a>";
           },
         ],
         chart: {
-          type: 'area',
+          type: "area",
           height: 50,
           sparkline: {
             enabled: true,
           },
         },
         stroke: {
-          curve: 'straight',
+          curve: "straight",
         },
         fill: {
           opacity: 0.3,
@@ -1246,10 +1450,13 @@ echo "<br><a href='logout.php'>sign out</a>";
         yaxis: {
           min: 0,
         },
-        colors: ['#DCE6EC'],
+        colors: ["#DCE6EC"],
       };
 
-      const sparkline1 = new ApexCharts(document.querySelector('#sparkline-1'), option_sparkline1);
+      const sparkline1 = new ApexCharts(
+        document.querySelector("#sparkline-1"),
+        option_sparkline1
+      );
       sparkline1.render();
 
       const option_sparkline2 = {
@@ -1259,14 +1466,14 @@ echo "<br><a href='logout.php'>sign out</a>";
           },
         ],
         chart: {
-          type: 'area',
+          type: "area",
           height: 50,
           sparkline: {
             enabled: true,
           },
         },
         stroke: {
-          curve: 'straight',
+          curve: "straight",
         },
         fill: {
           opacity: 0.3,
@@ -1274,10 +1481,13 @@ echo "<br><a href='logout.php'>sign out</a>";
         yaxis: {
           min: 0,
         },
-        colors: ['#DCE6EC'],
+        colors: ["#DCE6EC"],
       };
 
-      const sparkline2 = new ApexCharts(document.querySelector('#sparkline-2'), option_sparkline2);
+      const sparkline2 = new ApexCharts(
+        document.querySelector("#sparkline-2"),
+        option_sparkline2
+      );
       sparkline2.render();
 
       const option_sparkline3 = {
@@ -1287,14 +1497,14 @@ echo "<br><a href='logout.php'>sign out</a>";
           },
         ],
         chart: {
-          type: 'area',
+          type: "area",
           height: 50,
           sparkline: {
             enabled: true,
           },
         },
         stroke: {
-          curve: 'straight',
+          curve: "straight",
         },
         fill: {
           opacity: 0.3,
@@ -1302,15 +1512,16 @@ echo "<br><a href='logout.php'>sign out</a>";
         yaxis: {
           min: 0,
         },
-        colors: ['#DCE6EC'],
+        colors: ["#DCE6EC"],
       };
 
-      const sparkline3 = new ApexCharts(document.querySelector('#sparkline-3'), option_sparkline3);
+      const sparkline3 = new ApexCharts(
+        document.querySelector("#sparkline-3"),
+        option_sparkline3
+      );
       sparkline3.render();
     </script>
     <!--end::Script-->
   </body>
   <!--end::Body-->
 </html>
-
-

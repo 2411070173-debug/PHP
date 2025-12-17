@@ -1,9 +1,22 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION["user_id"])) {
+
+    header("Location: /phpweb/auth/login.php");
+
+    exit;
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE | CRUD</title>
+    <title>AdminLTE | Base de Datos</title>
     <!--begin::Accessibility Meta Tags-->
     <meta
       name="viewport"
@@ -22,7 +35,7 @@
     />
     <!--end::Accessibility Meta Tags-->
     <!--begin::Primary Meta Tags-->
-    <meta name="title" content="AdminLTE | Dashboard v2" />
+    <meta name="title" content="AdminLTE | Base de Usuarios" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -257,23 +270,25 @@
                 data-bs-toggle="dropdown"
               >
                 <img
-                  src="./assets/img/user2-160x160.jpg"
+                  src="./assets/img/foto01.png"
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline"
+                  ><?php echo " Bienvenido, " . $_SESSION["username"];?></span
+                >
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
                 <li class="user-header text-bg-primary">
                   <img
-                    src="./assets/img/user2-160x160.jpg"
+                    src="./assets/img/foto01.png"
                     class="rounded-circle shadow"
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
+                    <?php echo $_SESSION["username"];?>
+                    <small>Dic. 2025</small>
                   </p>
                 </li>
                 <!--end::User Image-->
@@ -293,8 +308,10 @@
                 <!--begin::Menu Footer-->
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end"
-                    >Sign out</a
+                  <a
+                    href="/phpweb/auth/lockout.php"
+                    class="btn btn-default btn-flat float-end"
+                    >Cerrar Sesión</a
                   >
                 </li>
                 <!--end::Menu Footer-->
@@ -312,7 +329,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
+          <a href="./dashboard_01.php" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="./assets/img/AdminLTELogo.png"
@@ -349,21 +366,50 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="./index.html" class="nav-link">
+                    <a href="./dashboard_01.php" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Dashboard v1</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index2.php" class="nav-link active">
+                    <a href="./dashboard_02.php" class="nav-link active">
                       <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v2</p>
+                      <p>Base de Datos</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
+                    <a href="./dashboard_03.php" class="nav-link">
                       <i class="nav-icon bi bi-circle"></i>
                       <p>Dashboard v3</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon bi bi-folder-check"></i>
+                  <p>
+                    Proyectos
+                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="https://github.com/2411070173-debug/React-VitePagWeb_1.0" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Proyecto Vite-Web</p>
+                    </a>
+                  </li>
+                 <li class="nav-item">
+                    <a href="https://github.com/2411070173-debug/Mongo-DB" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Proyecto MongoDB</p>
+                    </a>
+                  </li>
+                 <li class="nav-item">
+                    <a href="https://github.com/2411070173-debug/HTML5-CSS3-2.0" class="nav-link">
+                      <i class="nav-icon bi bi-circle"></i>
+                      <p>Proyecto HTML-CSS</p>
                     </a>
                   </li>
                 </ul>
@@ -604,179 +650,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-header">DOCUMENTATIONS</li>
-              <li class="nav-item">
-                <a href="./docs/introduction.html" class="nav-link">
-                  <i class="nav-icon bi bi-download"></i>
-                  <p>Installation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/layout.html" class="nav-link">
-                  <i class="nav-icon bi bi-grip-horizontal"></i>
-                  <p>Layout</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/color-mode.html" class="nav-link">
-                  <i class="nav-icon bi bi-star-half"></i>
-                  <p>Color Mode</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-ui-checks-grid"></i>
-                  <p>
-                    Components
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a
-                      href="./docs/components/main-header.html"
-                      class="nav-link"
-                    >
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Main Header</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      href="./docs/components/main-sidebar.html"
-                      class="nav-link"
-                    >
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Main Sidebar</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-filetype-js"></i>
-                  <p>
-                    Javascript
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./docs/javascript/treeview.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Treeview</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/browser-support.html" class="nav-link">
-                  <i class="nav-icon bi bi-browser-edge"></i>
-                  <p>Browser Support</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/how-to-contribute.html" class="nav-link">
-                  <i class="nav-icon bi bi-hand-thumbs-up-fill"></i>
-                  <p>How To Contribute</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/faq.html" class="nav-link">
-                  <i class="nav-icon bi bi-question-circle-fill"></i>
-                  <p>FAQ</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./docs/license.html" class="nav-link">
-                  <i class="nav-icon bi bi-patch-check-fill"></i>
-                  <p>License</p>
-                </a>
-              </li>
-              <li class="nav-header">MULTI LEVEL EXAMPLE</li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle-fill"></i>
-                  <p>Level 1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle-fill"></i>
-                  <p>
-                    Level 1
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Level 2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>
-                        Level 2
-                        <i class="nav-arrow bi bi-chevron-right"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="nav-icon bi bi-record-circle-fill"></i>
-                          <p>Level 3</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="nav-icon bi bi-record-circle-fill"></i>
-                          <p>Level 3</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="nav-icon bi bi-record-circle-fill"></i>
-                          <p>Level 3</p>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Level 2</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle-fill"></i>
-                  <p>Level 1</p>
-                </a>
-              </li>
-              <li class="nav-header">LABELS</li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle text-danger"></i>
-                  <p class="text">Important</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle text-warning"></i>
-                  <p>Warning</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-circle text-info"></i>
-                  <p>Informational</p>
-                </a>
-              </li>
+
             </ul>
             <!--end::Sidebar Menu-->
           </nav>
@@ -792,12 +666,12 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">CRUD</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">BD Usuarios</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    CRUD
+                    BD Usuarios
                   </li>
                 </ol>
               </div>
@@ -807,21 +681,32 @@
           <!--end::Container-->
         </div>
 
-        <!--TABLA CONTENIDA EN MYQSL-->
+        <!--TABLA CONTENIDA EN MYSQL-->
         <div class="app-content">
+
           <?php
-            include "conexionmysql.php";
-            $sql=$conexion->query(" select * FROM users"); while($datos) ?>
-          <!--begin::Container-->
+            // Use conexionpdo.php (PDO) which exists in project root.
+            // __DIR__ is this file's directory (c:/xampp/htdocs/phpweb/dist)
+            require_once __DIR__ . '/../includes/conexionpdo.php';
+
+            try {
+                $stmt = $pdo->query("SELECT * FROM users");
+                $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } catch (Exception $e) {
+                echo '<div class="alert alert-danger">Error al obtener datos: ' . htmlspecialchars($e->getMessage()) . '</div>';
+                $rows = [];
+            }
+          ?>
+
           <div class="container-fluid">
             <!-- Begin::CRUD Table -->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Gestión de Datos</h3>
                 <div class="card-tools">
-                  <button class="btn btn-primary">
+                  <a href="#" class="btn btn-primary">
                     <i class="bi bi-plus-lg"></i> Nuevo
-                  </button>
+                  </a>
                 </div>
               </div>
               <div class="card-body">
@@ -829,48 +714,25 @@
                   <table class="table table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
+                        <th>id</th>
+                        <th>username</th>
+                        <th>password</th>
+                        <th>email</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>Juan Pérez</td>
-                        <td>juan@example.com</td>
-                        <td>555-0123</td>
-                        <td>
-                          <button class="btn btn-sm btn-info">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning">
-                            <i class="bi bi-pencil"></i>
-                          </button>
-                          <button class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>María García</td>
-                        <td>maria@example.com</td>
-                        <td>555-0124</td>
-                        <td>
-                          <button class="btn btn-sm btn-info">
-                            <i class="bi bi-eye"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning">
-                            <i class="bi bi-pencil"></i>
-                          </button>
-                          <button class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i>
-                          </button>
-                        </td>
-                      </tr>
+                      <?php if (count($rows) === 0): ?>
+                        <tr><td colspan="4" class="text-center">No hay registros</td></tr>
+                      <?php else: ?>
+                        <?php foreach ($rows as $datos): ?>
+                          <tr>
+                            <td><?= htmlspecialchars($datos['id'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['username'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['password'] ?? '') ?></td>
+                            <td><?= htmlspecialchars($datos['email'] ?? '') ?></td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
                     </tbody>
                   </table>
                 </div>
@@ -878,26 +740,20 @@
               <div class="card-footer">
                 <nav>
                   <ul class="pagination justify-content-end">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                    </li>
-                    <li class="page-item active">
-                      <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Siguiente</a>
-                    </li>
+                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
                   </ul>
                 </nav>
               </div>
             </div>
             <!-- End::CRUD Table -->
+            
+
+          <!--begin::Container-->
+          
 
             <!-- Info boxes -->
             <div class="row mt-4">

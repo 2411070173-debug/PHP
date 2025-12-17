@@ -2,12 +2,12 @@
 session_start();
 
 if (!isset($_SESSION["user_id"])) {
-    header("Location: ../login.php");
+    header("Location: /phpweb/auth/login.php");
     exit;
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,7 @@ if (!isset($_SESSION["user_id"])) {
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="./css/adminlte.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">

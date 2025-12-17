@@ -1,8 +1,3 @@
-<?php
-
-echo "Bienvenidos al servidor!";
-
-?>
 
 
 <?php

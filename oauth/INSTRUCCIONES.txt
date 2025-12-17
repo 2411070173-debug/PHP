@@ -1,0 +1,121 @@
+📌 INSTRUCCIONES RÁPIDAS DE CONFIGURACIÓN
+============================================
+
+PASO 1: CREDENCIALES DE GOOGLE
+==============================
+
+1. Ve a: https://console.cloud.google.com
+2. Crea un nuevo proyecto
+3. Ve a "APIs y servicios" > "Biblioteca"
+4. Habilita "Google+ API"
+5. Ve a "Credenciales" > "Crear credenciales" > "ID de cliente OAuth"
+   - Tipo: Aplicación web
+   - URIs autorizados:
+     * JavaScript: http://localhost
+     * Redirección: http://localhost/phpweb/oauth/google-callback.php
+6. Copia: CLIENT_ID y CLIENT_SECRET
+
+PASO 2: CONFIGURAR ARCHIVO config.php
+======================================
+
+Edita: oauth/config.php
+
+Reemplaza:
+  define('GOOGLE_CLIENT_ID', 'TU_CLIENT_ID_AQUI.apps.googleusercontent.com');
+  define('GOOGLE_CLIENT_SECRET', 'TU_CLIENT_SECRET_AQUI');
+
+Con tus valores reales de Google.
+
+PASO 3: ACTUALIZAR BASE DE DATOS
+=================================
+
+Opción A (phpMyAdmin):
+  1. Abre phpMyAdmin
+  2. Selecciona tu base de datos
+  3. Pestaña "SQL"
+  4. Copia el contenido de: oauth/update-database.sql
+  5. Pega y ejecuta
+
+Opción B (Terminal):
+  mysql -u root -p tu_base_de_datos < oauth/update-database.sql
+
+PASO 4: VERIFICAR INTEGRACIÓN
+==============================
+
+Los botones de Google OAuth ya están en:
+  ✓ /phpweb/auth/login.php (botón "Inicia sesión con Google")
+  ✓ /phpweb/auth/registrar.php (botón "Regístrate con Google")
+
+PASO 5: PROBAR
+==============
+
+1. Abre: http://localhost/phpweb/auth/login.php
+2. Haz clic en "Inicia sesión con Google"
+3. Inicia sesión con tu cuenta de Google
+4. Deberías llegar al dashboard
+
+ESTRUCTURA DE ARCHIVOS
+======================
+
+oauth/
+├── config.php              ← Edita AQUÍ con tus credenciales
+├── google-login.php        ← Inicia OAuth (no editar)
+├── google-callback.php     ← Recibe respuesta de Google (no editar)
+├── oauth-helper.php        ← Funciones auxiliares (no editar)
+├── update-database.sql     ← Actualiza tabla users
+├── README.md               ← Documentación completa
+└── INSTRUCCIONES.txt       ← Este archivo
+
+POSIBLES ERRORES
+================
+
+"Credenciales de Google no configuradas"
+  → Edita oauth/config.php con tus credenciales reales
+
+"Solicitud de autenticación inválida"
+  → Verifica que la URI de redirección coincida exactamente en Google Cloud
+
+"Columnas no existen en base de datos"
+  → Ejecuta el script update-database.sql
+
+"cURL no está habilitado"
+  → Descomenta extension=curl en php.ini
+
+PREGUNTAS FRECUENTES
+====================
+
+P: ¿Dónde coloco las credenciales?
+R: En oauth/config.php, líneas 11-13
+
+P: ¿Qué campos agregar a la base de datos?
+R: Ejecuta oauth/update-database.sql - lo hace automáticamente
+
+P: ¿Es seguro en producción?
+R: Sí, pero:
+   - Usa HTTPS en producción
+   - Almacena credenciales en variables de entorno
+   - No compartas CLIENT_SECRET
+
+P: ¿Los usuarios se crean automáticamente?
+R: Sí, en primer login con Google se crea la cuenta
+
+PRÓXIMOS PASOS
+==============
+
+☐ Configurar credenciales en oauth/config.php
+☐ Ejecutar update-database.sql
+☐ Probar login con Google en http://localhost/phpweb/auth/login.php
+☐ Verificar que la cuenta se creó en la base de datos
+☐ Configurar HTTPS para producción (opcional pero recomendado)
+
+¿NECESITAS AYUDA?
+=================
+
+Lee la documentación completa en: oauth/README.md
+
+Contiene:
+  - Instrucciones paso a paso con imágenes
+  - Solución de problemas
+  - Referencias útiles
+  - Ejemplos de código
+

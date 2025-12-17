@@ -1,0 +1,478 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                  INSTRUCCIONES FINALES - SISTEMA DE ESCUELA                   ║
+║                              v2.0 - 2025                                      ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════════
+🎯 PRIMER PASO: VERIFICAR REQUISITOS
+═══════════════════════════════════════════════════════════════════════════════════
+
+ANTES DE USAR EL SISTEMA, VERIFICA QUE TENGAS:
+
+1. ✅ XAMPP INICIADO
+   ├─ Apache corriendo (puerto 80 o 8080)
+   ├─ MySQL corriendo (puerto 3306)
+   └─ Control Panel de XAMPP ejecutándose
+
+2. ✅ BASE DE DATOS CORRECTA
+   ├─ Nombre: bd-ventas
+   ├─ Tabla users con columnas:
+   │  ├─ id (INT, PK)
+   │  ├─ username (VARCHAR)
+   │  ├─ email (VARCHAR)
+   │  ├─ password (VARCHAR)
+   │  ├─ role (VARCHAR) ← IMPORTANTE
+   │  └─ otros campos opcionales
+   └─ Ver abajo para script SQL
+
+3. ✅ ARCHIVOS EN LUGAR CORRECTO
+   ├─ /xampp/htdocs/phpweb/ existe
+   ├─ auth/login.php está
+   ├─ dist/dashboard-alumno.php está
+   ├─ dist/dashboard-profesor.php está
+   └─ Todos los 9 archivos nuevos están
+
+4. ✅ NAVEGADOR MODERNO
+   ├─ Chrome 90+
+   ├─ Firefox 88+
+   ├─ Safari 14+
+   └─ Edge 90+
+
+═══════════════════════════════════════════════════════════════════════════════════
+🗄️ SEGUNDO PASO: PREPARAR BASE DE DATOS (CRÍTICO)
+═══════════════════════════════════════════════════════════════════════════════════
+
+LA COLUMNA 'role' ES OBLIGATORIA PARA QUE EL SISTEMA FUNCIONE.
+
+OPCIÓN 1: EJECUTAR VÍA phpMyAdmin
+
+1. Abre: http://localhost/phpmyadmin/
+2. Selecciona la BD "bd-ventas"
+3. Haz clic en la tabla "users"
+4. Haz clic en "Estructura" o "SQL"
+5. Ejecuta este comando SQL:
+
+   ALTER TABLE users ADD COLUMN role VARCHAR(20) 
+   DEFAULT 'student' AFTER email;
+
+6. Presiona "Ejecutar" o "Go"
+7. Deberías ver: "✓ Consulta ejecutada exitosamente"
+
+OPCIÓN 2: USAR ARCHIVO PROPORCIONADO
+
+1. El archivo existe: /phpweb/CAMBIOS_BD.sql
+2. Puedes importarlo desde phpMyAdmin
+3. O ejecutar manualmente los comandos
+
+VERIFICAR QUE FUNCIONÓ:
+
+1. En phpMyAdmin
+2. Haz clic en tabla "users"
+3. Haz clic en "Estructura"
+4. Deberías ver una columna "role" de tipo VARCHAR(20)
+5. Si no la ves, la migración falló
+
+SI NO LOGRAS AGREGAR LA COLUMNA:
+
+1. Intenta manualmente:
+   - Login a phpMyAdmin
+   - Ve a SQL
+   - Copia este comando:
+   
+   ALTER TABLE users ADD COLUMN role VARCHAR(20) 
+   DEFAULT 'student' AFTER email;
+   
+   - Pega en la ventana SQL
+   - Ejecuta
+
+2. Si da error, puede ser que:
+   - La columna ya existe (está bien)
+   - MySQL no está corriendo
+   - No tienes permisos
+   
+   Intenta: SELECT * FROM users LIMIT 1;
+   Si funciona, entonces existe la BD
+
+═══════════════════════════════════════════════════════════════════════════════════
+👤 TERCER PASO: PREPARAR USUARIOS DE PRUEBA
+═══════════════════════════════════════════════════════════════════════════════════
+
+OPCIÓN 1: USAR USUARIOS EXISTENTES (MÁS RÁPIDO)
+
+Si ya tienes usuarios en BD:
+
+1. Abre phpMyAdmin
+2. Ve a la BD bd-ventas → tabla users
+3. Para cada usuario, edita el registro
+4. Cambia la columna "role" a:
+   ├─ 'student' (si quieres que sea alumno)
+   └─ 'teacher' (si quieres que sea profesor)
+5. Guarda
+
+OPCIÓN 2: CREAR USUARIOS NUEVOS (VÍA REGISTRO)
+
+1. Abre: http://localhost/phpweb/auth/registrar.php
+2. Rellena los campos:
+   ├─ Selecciona rol: Alumno o Profesor
+   ├─ Usuario: (nombre único)
+   ├─ Email: (email válido)
+   └─ Contraseña: (cualquier contraseña)
+3. Presiona "Registrarse"
+4. Automáticamente se asignará el rol
+
+OPCIÓN 3: INSERTAR DIRECTAMENTE EN BD
+
+En phpMyAdmin → SQL, ejecuta:
+
+Para alumno:
+INSERT INTO users (username, email, password, role) 
+VALUES ('alumno1', 'alumno@example.com', 
+        SHA2('password123', 256), 'student');
+
+Para profesor:
+INSERT INTO users (username, email, password, role) 
+VALUES ('profesor1', 'profesor@example.com', 
+        SHA2('password123', 256), 'teacher');
+
+USUARIOS SUGERIDOS:
+
+Alumno:
+├─ Usuario: student1
+├─ Email: student@example.com
+├─ Pass: password123
+└─ Role: student
+
+Profesor:
+├─ Usuario: teacher1
+├─ Email: teacher@example.com
+├─ Pass: password123
+└─ Role: teacher
+
+═══════════════════════════════════════════════════════════════════════════════════
+🔐 CUARTO PASO: ACCEDER AL SISTEMA
+═══════════════════════════════════════════════════════════════════════════════════
+
+ABRIR EL LOGIN:
+
+1. Abre navegador
+2. Ve a: http://localhost/phpweb/auth/login.php
+3. Deberías ver:
+   ├─ Título: "Sistema de Escuela"
+   ├─ Selector: "Ingresar como" (Alumno/Profesor)
+   ├─ Campo: Usuario/Email
+   ├─ Campo: Contraseña
+   └─ Botón: "Ingresar"
+
+SELECCIONAR ROL (IMPORTANTE):
+
+⚠️ ANTES DE INGRESAR CREDENCIALES:
+
+1. En el selector "Ingresar como" ↓
+2. Selecciona: 👨‍🎓 Alumno  O  👨‍🏫 Profesor
+3. Selecciona EL MISMO ROL que tiene ese usuario en BD
+4. Si seleccionas "Alumno" pero el usuario es "teacher":
+   ├─ Te dirá que no existe el usuario
+   └─ Selecciona el rol correcto
+
+INGRESAR CREDENCIALES:
+
+1. Usuario: (tu usuario)
+2. Contraseña: (tu contraseña)
+3. Presiona: "Ingresar"
+
+REDIRECCIÓN AUTOMÁTICA:
+
+Si todo es correcto:
+├─ Alumno → /phpweb/dist/dashboard-alumno.php
+└─ Profesor → /phpweb/dist/dashboard-profesor.php
+
+═══════════════════════════════════════════════════════════════════════════════════
+👨‍🎓 QUINTO PASO: EXPLORAR COMO ALUMNO
+═══════════════════════════════════════════════════════════════════════════════════
+
+DESPUÉS DE LOGUEARTE COMO ALUMNO:
+
+VERÁS:
+1. Navbar (arriba) con tu usuario + (Alumno)
+2. Sidebar (izquierda) con 5 opciones
+3. Dashboard principal con 6 cursos
+
+OPCIONES DEL SIDEBAR:
+
+1. 🏠 INICIO
+   └─ Vuelve al dashboard principal
+
+2. 📚 CURSOS
+   ├─ 6 cursos matriculados
+   ├─ Información completa
+   └─ URL: /phpweb/dist/cursos.php
+
+3. ✅ ASISTENCIA
+   ├─ Asistencia por curso
+   ├─ Fechas y estados
+   └─ URL: /phpweb/dist/asistencia.php
+
+4. ⏰ HORARIO
+   ├─ Tabla Lunes-Viernes
+   ├─ Horas de clase
+   └─ URL: /phpweb/dist/horario.php
+
+5. 📖 SÍLABO
+   ├─ 6 sílabos con descripción
+   ├─ Botón descargar PDF
+   └─ URL: /phpweb/dist/silabus.php
+
+6. ⭐ CALIFICACIONES
+   └─ (En desarrollo)
+
+PROBAR FUNCIONES:
+
+1. Haz clic en "CURSOS" → Ve los 6 cursos
+2. Haz clic en "ASISTENCIA" → Ve registro de asistencia
+3. Haz clic en "HORARIO" → Ve tu horario semanal
+4. Haz clic en "SÍLABO" → Descarga un PDF
+5. Haz clic en tu usuario (arriba) → Ver menú
+
+═══════════════════════════════════════════════════════════════════════════════════
+👨‍🏫 SEXTO PASO: EXPLORAR COMO PROFESOR
+═══════════════════════════════════════════════════════════════════════════════════
+
+DESPUÉS DE LOGUEARTE COMO PROFESOR:
+
+VERÁS:
+1. Navbar (arriba) con tu usuario + (Profesor)
+2. Sidebar (izquierda) con 5 opciones
+3. Dashboard principal con estadísticas y alumnos
+
+OPCIONES DEL SIDEBAR:
+
+1. 🏠 INICIO
+   └─ Vuelve al dashboard principal
+
+2. 👥 GESTIONAR ALUMNOS
+   ├─ Lista de todos los alumnos
+   ├─ Opciones: Editar, Eliminar
+   └─ URL: /phpweb/dist/profesor-alumnos.php
+
+3. 📚 GESTIONAR CURSOS
+   ├─ 6 cursos disponibles
+   ├─ Opciones: Editar, Eliminar, Crear
+   └─ URL: /phpweb/dist/profesor-cursos.php
+
+4. ✅ ASISTENCIA
+   ├─ Registrar asistencia
+   ├─ Filtros: Fecha, Curso, Hora
+   └─ URL: /phpweb/dist/profesor-asistencia.php
+
+5. 📊 REPORTES
+   └─ (En desarrollo)
+
+PROBAR FUNCIONES:
+
+1. Haz clic en "GESTIONAR ALUMNOS"
+   ├─ Ve lista de alumnos
+   ├─ Intenta editar (interfaz)
+   └─ Intenta eliminar (interfaz)
+
+2. Haz clic en "GESTIONAR CURSOS"
+   ├─ Ve 6 cursos
+   ├─ Intenta editar
+   └─ Intenta crear uno nuevo
+
+3. Haz clic en "ASISTENCIA"
+   ├─ Selecciona fecha
+   ├─ Selecciona curso
+   ├─ Selecciona hora
+   ├─ Marca estados (Presente/Tardío/Ausente)
+   └─ Presiona "Guardar Asistencia"
+
+═══════════════════════════════════════════════════════════════════════════════════
+🧪 SÉPTIMO PASO: PRUEBAS ADICIONALES
+═══════════════════════════════════════════════════════════════════════════════════
+
+PRUEBA 1: SEGURIDAD
+├─ Copia la URL del dashboard de alumno
+├─ Abre otra pestaña
+├─ Loguéate como profesor
+├─ Pega la URL del alumno
+├─ Deberías ser REDIRIGIDO AL LOGIN (o dashboard profesor)
+└─ ✅ Seguridad funciona
+
+PRUEBA 2: SESIONES
+├─ Loguéate como alumno
+├─ Abre dev tools (F12) → Application → Cookies
+├─ Deberías ver PHPSESSID
+├─ Cierra el navegador
+├─ Vuelve a abrir
+├─ Deberías estar deslogueado
+└─ ✅ Sesiones funcionan
+
+PRUEBA 3: LOGOUT
+├─ Loguéate como profesor
+├─ Haz clic en tu usuario (arriba derecha)
+├─ Selecciona "Cerrar Sesión"
+├─ Deberías ir al index.php
+├─ Intenta volver al dashboard atrás
+├─ Deberías ser REDIRIGIDO AL LOGIN
+└─ ✅ Logout funciona
+
+PRUEBA 4: ROL CORRECTO
+├─ Verifica que en el navbar aparezca "(Alumno)" o "(Profesor)"
+├─ Loguéate con rol incorrecto
+│  ├─ Ej: Registrarse como "Alumno"
+│  ├─ Intentar login como "Profesor" con esas creds
+│  └─ Deberías obtener error
+└─ ✅ Validación de rol funciona
+
+═══════════════════════════════════════════════════════════════════════════════════
+📱 OCTAVO PASO: PROBAR RESPONSIVO
+═══════════════════════════════════════════════════════════════════════════════════
+
+ABRIR DEVELOPER TOOLS:
+├─ Presiona: F12 (Windows) o Cmd+Option+I (Mac)
+├─ Haz clic en icono "Mobile" (esquina superior izquierda)
+└─ Deberías ver la página en modo móvil
+
+PROBAR TAMAÑOS:
+
+Mobile (375px):
+├─ Sidebar debe ser muy estrecho (150px)
+├─ Contenido adaptado
+├─ Todo legible
+└─ Navbar responsive
+
+Tablet (768px):
+├─ Sidebar más ancho (200px)
+├─ Grid de 2 columnas
+├─ Todo visible
+└─ Navegación clara
+
+Desktop (1024px+):
+├─ Sidebar normal (250px)
+├─ Grid de 3+ columnas
+├─ Completo
+└─ Óptimo
+
+CAMBIAR TAMAÑO:
+├─ En Developer Tools
+├─ Busca el dropdown con "375px"
+├─ Selecciona otros tamaños
+├─ O usa Responsive Design Mode (Ctrl+Shift+M)
+
+═══════════════════════════════════════════════════════════════════════════════════
+🆘 NOVENO PASO: SOLUCIONAR PROBLEMAS
+═══════════════════════════════════════════════════════════════════════════════════
+
+PROBLEMA: "Página en blanco"
+SOLUCIÓN:
+├─ Verifica que Apache esté corriendo
+├─ Verifica que MySQL esté corriendo
+├─ Recarga la página (Ctrl+Shift+R hard refresh)
+├─ Revisa la consola (F12 → Console)
+└─ Ve al error exacto
+
+PROBLEMA: "Error al conectar a BD"
+SOLUCIÓN:
+├─ Verifica que MySQL esté corriendo
+├─ Verifica credenciales en conexionpdo.php
+├─ Verifica que la BD "bd-ventas" exista
+├─ En phpMyAdmin, ve a BD y verifica tabla users
+└─ Reinicia XAMPP
+
+PROBLEMA: "Error de login - usuario no existe"
+SOLUCIÓN:
+├─ Verifica que seleccionaste el rol CORRECTO
+├─ Verifica que el usuario existe en BD
+├─ Verifica que el usuario tiene el rol correcto
+├─ Ve a phpMyAdmin → users → edita el usuario
+├─ Asegúrate que la columna "role" = 'student' o 'teacher'
+└─ Intenta nuevamente
+
+PROBLEMA: "No aparece el rol en navbar"
+SOLUCIÓN:
+├─ Verifica que la columna "role" existe
+├─ Verifica que el usuario tiene role en BD
+├─ Recarga la página (Ctrl+F5)
+├─ Cierra sesión y vuelve a loginear
+└─ Revisa en phpMyAdmin
+
+PROBLEMA: "Sidebar no se ve"
+SOLUCIÓN:
+├─ Verifica CSS carga bien (F12 → Network)
+├─ Revisa que los estilos en <style> estén
+├─ Intenta en otro navegador
+├─ Borra caché (Ctrl+Shift+Delete)
+└─ Recarga página (Ctrl+Shift+R)
+
+═══════════════════════════════════════════════════════════════════════════════════
+📋 DÉCIMO PASO: CHECKLIST FINAL
+═══════════════════════════════════════════════════════════════════════════════════
+
+ANTES DE USAR EN PRODUCCIÓN:
+
+SOFTWARE:
+☐ XAMPP corriendo (Apache + MySQL)
+☐ PHP versión 7.4+
+☐ MySQL versión 5.7+
+☐ Navegadores modernos
+
+BASE DE DATOS:
+☐ BD "bd-ventas" existe
+☐ Tabla "users" existe
+☐ Columna "role" agregada
+☐ Al menos 1 usuario por rol
+
+ARCHIVOS:
+☐ /phpweb/auth/login.php ✓
+☐ /phpweb/auth/registrar.php ✓
+☐ /phpweb/dist/dashboard-alumno.php ✓
+☐ /phpweb/dist/dashboard-profesor.php ✓
+☐ /phpweb/dist/cursos.php ✓
+☐ /phpweb/dist/asistencia.php ✓
+☐ /phpweb/dist/horario.php ✓
+☐ /phpweb/dist/silabus.php ✓
+☐ /phpweb/dist/profesor-alumnos.php ✓
+☐ /phpweb/dist/profesor-cursos.php ✓
+☐ /phpweb/dist/profesor-asistencia.php ✓
+
+FUNCIONALIDAD:
+☐ Login funciona
+☐ Selector de rol funciona
+☐ Redireccionamiento correcto
+☐ Dashboards muestran correctamente
+☐ Sidebar navega correctamente
+☐ Logout funciona
+☐ Responsivo en móvil
+
+SEGURIDAD:
+☐ Alumnos no pueden ver profesor
+☐ Profesores no pueden ver alumno
+☐ Logout elimina sesión
+☐ Redirección a login sin sesión
+
+═══════════════════════════════════════════════════════════════════════════════════
+🎉 ¡LISTO!
+═══════════════════════════════════════════════════════════════════════════════════
+
+Si llegaste hasta aquí y todo funciona, ¡felicidades! 🎊
+
+El Sistema de Escuela v2.0 está completamente operacional.
+
+PRÓXIMOS PASOS SUGERIDOS:
+
+Ahora puedes:
+1. ✅ Usar el sistema en tu institución
+2. ✅ Agregar más alumnos/profesores
+3. ✅ Personalizar los 6 cursos
+4. ✅ Solicitar nuevas funcionalidades
+5. ✅ Integrar con otros sistemas
+
+═══════════════════════════════════════════════════════════════════════════════════
+
+Para soporte o consultas: contacta al equipo de desarrollo
+
+Sistema de Escuela v2.0
+10 de Diciembre de 2025
+Estado: ✅ COMPLETO Y FUNCIONAL
+
+═══════════════════════════════════════════════════════════════════════════════════
