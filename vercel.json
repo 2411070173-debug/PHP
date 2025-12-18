@@ -1,0 +1,66 @@
+{
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.2"
+    },
+    "*.php": {
+      "runtime": "vercel-php@0.7.2"
+    },
+    "auth/*.php": {
+      "runtime": "vercel-php@0.7.2"
+    },
+    "oauth/*.php": {
+      "runtime": "vercel-php@0.7.2"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*\\.css)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*\\.js)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.ico)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/auth/(.*)",
+      "dest": "/auth/$1"
+    },
+    {
+      "src": "/oauth/(.*)",
+      "dest": "/oauth/$1"
+    },
+    {
+      "src": "/menu.php",
+      "dest": "/menu.php"
+    },
+    {
+      "src": "/crud_handler.php",
+      "dest": "/crud_handler.php"
+    },
+    {
+      "src": "/pdf_generator.php",
+      "dest": "/pdf_generator.php"
+    },
+    {
+      "src": "/test_crud.php",
+      "dest": "/test_crud.php"
+    },
+    {
+      "src": "/prueba_sistema.php",
+      "dest": "/prueba_sistema.php"
+    },
+    {
+      "src": "/",
+      "dest": "/index.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}

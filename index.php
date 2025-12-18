@@ -4,6 +4,6 @@
  */
 
 // Redirigir a menu.php (CRUD principal)
-header("Location: /phpweb/menu.php");
+header("Location: /menu.php");
 exit;
 ?>

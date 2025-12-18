@@ -1,0 +1,10 @@
+# Archivos y carpetas a ignorar en Vercel deployment
+backup_before_vercel/
+backup_*/
+*.txt
+docs/
+uploads/
+.git/
+.gitignore
+*.md
+!README.md
