@@ -41,9 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 // Redirigir al dashboard según el rol
                 if ($role === "teacher") {
-                    header("Location: /phpweb/dist/dashboard-profesor.php");
+                    header("Location: /dist/dashboard-profesor.php");
                 } else {
-                    header("Location: /phpweb/dist/dashboard-alumno.php");
+                    header("Location: /dist/dashboard-alumno.php");
                 }
                 exit;
             } else {
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <!-- Google OAuth Button -->
             <div class="text-center mb-3">
                 <p class="text-muted mb-2" style="font-size: 14px;">O regístrate con:</p>
-                <a href="/phpweb/oauth/google-login.php" class="btn btn-danger w-100 mb-3">
+                <a href="/oauth/google-login.php" class="btn btn-danger w-100 mb-3">
                     <i class="fab fa-google me-2"></i>Regístrate con Google
                 </a>
             </div>

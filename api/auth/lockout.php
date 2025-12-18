@@ -4,7 +4,7 @@ session_start();
 
 session_destroy();
 
-header("Location: /phpweb/auth/login.php");
+header("Location: /auth/login.php");
 
 exit;
 

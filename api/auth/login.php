@@ -37,9 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Redirigir según el rol
         if ($selected_role === "teacher") {
-            header("Location: /phpweb/dist/dashboard-profesor.php");
+            header("Location: /dist/dashboard-profesor.php");
         } else {
-            header("Location: /phpweb/dist/dashboard-alumno.php");
+            header("Location: /dist/dashboard-alumno.php");
         }
 
         exit;
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>loguearse</title>
-    <link rel='stylesheet' href="/phpweb/css/login2.css">
+    <link rel='stylesheet' href="/css/login2.css">
 </head>
 <body>
     <div class="login-container">
@@ -125,13 +125,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     const roleSelect = document.querySelector('select[name="role"]');
                     const selectedRole = roleSelect.value;
                     // Pasar el rol como parámetro en la URL
-                    window.location.href = '/phpweb/oauth/google-login.php?role=' + encodeURIComponent(selectedRole);
+                    window.location.href = '/oauth/google-login.php?role=' + encodeURIComponent(selectedRole);
                 }
             </script>
 
             <!-- Link a Registrar -->
             <div style="margin-top: 20px; text-align: center;">
-                <p style="color: #999; font-size: 14px;">¿No tienes cuenta? <a href="/phpweb/auth/registrar.php" style="color: #007bff; text-decoration: none;">Regístrate aquí</a></p>
+                <p style="color: #999; font-size: 14px;">¿No tienes cuenta? <a href="/auth/registrar.php" style="color: #007bff; text-decoration: none;">Regístrate aquí</a></p>
             </div>
   
         </form>

@@ -536,10 +536,10 @@ $stats = getUserStats();
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav ms-auto navbar-auth">
-                    <a href="/phpweb/auth/login.php" class="btn btn-login">
+                    <a href="/auth/login.php" class="btn btn-login">
                         <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
                     </a>
-                    <a href="/phpweb/auth/registrar.php" class="btn btn-register">
+                    <a href="/auth/registrar.php" class="btn btn-register">
                         <i class="bi bi-person-plus"></i> Registrarse
                     </a>
                 </div>
@@ -683,7 +683,7 @@ $stats = getUserStats();
                             </button>
                         <?php else: ?>
                             <p class="text-muted mt-3"><i class="bi bi-info-circle"></i> Inicia sesión para crear usuarios</p>
-                            <a href="/phpweb/login.php" class="btn btn-primary mt-2">
+                            <a href="/auth/login.php" class="btn btn-primary mt-2">
                                 <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
                             </a>
                         <?php endif; ?>
